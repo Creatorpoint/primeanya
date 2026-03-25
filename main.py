@@ -2,8 +2,7 @@ import asyncio
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
 from handlers import register_all_handlers
-import web
-from web_panel.app import start_web
+import web  # VERY IMPORTANT
 
 app = Client(
     "PrimeBot",
@@ -16,11 +15,10 @@ register_all_handlers(app)
 
 async def main():
     await app.start()
-    print("✅ Bot Started")
+    print("✅ Bot Started Successfully")
 
-    start_web()  # web panel start
-
+    # Keep alive
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(main())
+    asyncio.run(main())
