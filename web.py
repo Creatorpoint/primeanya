@@ -1,16 +1,12 @@
 import os
-import threading
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from flask import Flask
 
-PORT = int(os.environ.get("PORT", 10000))
+app = Flask(__name__)
 
-class Handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"Bot Running ✅")
+@app.route("/")
+def home():
+    return "✅ Prime Bot Running"
 
-def run():
-    HTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
-
-threading.Thread(target=run, daemon=True).start()
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
