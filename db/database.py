@@ -6,3 +6,4 @@ db = client["prime_bot"]
 
 groups = db["groups"]
 stats = db["stats"]
+mods = db["mods"]
